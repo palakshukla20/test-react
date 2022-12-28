@@ -1,6 +1,5 @@
 // AddItem.tsx
 import React from "react";
-import { Item } from "./ToDoList";
 
 const isValid = (item) => {
   return item.task !== "" && item.priority !== -1;
