@@ -1,39 +1,34 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Build and Test React Application
-
-# Controls when the workflow will run
+name: CI
+# Cancel in progress runs if a new one is started
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - main
 jobs:
-  # This workflow contains a single job called "build"
-  build_test:
-    # The type of runner that the job will run on
+  build:
     runs-on: ubuntu-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Don't allow runs longer than 20 minutes
+    timeout-minutes: 20
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "v14.19.0"
-      
+          node-version: "latest"
+      # Cache all node_modules
       - uses: actions/cache@v3
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-     
+
       - name: Install modules
         run: npm install
 
       - name: Build
         run: npm run build
+
+ 
+
