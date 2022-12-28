@@ -55,7 +55,7 @@ class AddItem extends React.Component {
                 onChange={this.setTask}
               />
             </td>
-
+            <td>Priority:</td>
             <td>
               <input
                 id="prioity"
