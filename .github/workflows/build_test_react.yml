@@ -29,6 +29,6 @@ jobs:
           node-version: "v14.19.0"
       - name: npm ci, build and test
         run: |
-          npm ci
+          npm install
           npm run build
           npm test 
