@@ -24,13 +24,13 @@ jobs:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
           
-      - name : list all files
-        run: ls ${{ github.workspace }}
-#       - name: Install modules
-#         run: npm install
+#       - name : list all files
+#         run: ls ${{ github.workspace }}
+      - name: Install modules
+        run: npm install
 
-#       - name: Build
-#         run: npm run build
+      - name: Build
+        run: npm run build
 
-#       - name: Test
-#         run: npm test
+      - name: Test
+        run: npm test
