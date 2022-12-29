@@ -25,6 +25,7 @@ jobs:
     steps:
     
       # Checks-out your repository, so your job can access it
+      - name: Checkout source code
       - uses: actions/checkout@v3
       
       - name: Use Node.js ${{ matrix.node-version }}
