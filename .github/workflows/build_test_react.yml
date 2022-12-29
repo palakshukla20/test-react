@@ -17,15 +17,13 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "latest"
+          node-version: "v14.19.0"
       # Cache all node_modules
       - uses: actions/cache@v3
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-          
-#       - name : list all files
-#         run: ls ${{ github.workspace }}
+
       - name: Install modules
         run: npm install
 

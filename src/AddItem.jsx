@@ -29,7 +29,7 @@ class AddItem extends React.Component {
     });
   }
 
-  addItem(evt) {
+  addItem() {
     const item = this.state;
     if (isValid(item)) {
       this.props.addItem(item);
