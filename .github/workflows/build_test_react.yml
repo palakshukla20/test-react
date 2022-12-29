@@ -44,10 +44,4 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install modules
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm test
+        run: echo 'hello'
