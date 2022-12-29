@@ -5,19 +5,25 @@ concurrency:
   cancel-in-progress: true
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
 jobs:
   build:
     runs-on: ubuntu-latest
     # Don't allow runs longer than 20 minutes
     timeout-minutes: 20
-
+    strategy: 
+      matrix:
+        node-version: [ 14 ]
+        
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "v14.19.0"
+          node-version: ${{ matrix.node-version }}
+          
       # Cache all node_modules
       - uses: actions/cache@v3
         with:
