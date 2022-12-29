@@ -7,8 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   # Workflow will be triggered whenever a commit or pull request is made against a main branch. 
   push:
-    branches: 
-      - main
+    branches: [ main ]
       
   pull_request:
     branches: [ main ]
@@ -18,8 +17,6 @@ jobs:
   #job name
   build:
     runs-on: ubuntu-latest
-    
-  
         
     # Don't allow runs longer than 20 minutes
     timeout-minutes: 20
