@@ -25,7 +25,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
           
       - name : list all files
-        run: ls ${{ github.workflow }}
+        run: ls ${{ github.workspace }}
 #       - name: Install modules
 #         run: npm install
 
