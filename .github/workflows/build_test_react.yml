@@ -18,10 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        # node version needs to deploy
-        node-version: [14.x] 
+  
         
     # Don't allow runs longer than 20 minutes
     timeout-minutes: 20
@@ -35,7 +32,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 'latest'
           
       # Cache all node_modules
       - uses: actions/cache@v3
