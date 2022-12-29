@@ -7,7 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   # Workflow will be triggered whenever a commit or pull request is made against a main branch. 
   push:
-    branches: [ main ]
+    branches: 
+      - main
       
   pull_request:
     branches: [ main ]
