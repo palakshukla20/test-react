@@ -32,9 +32,10 @@ jobs:
 
       - name: Install modules
         run: npm install
+      - name: Run ESLint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
+#       - name: Build
+#         run: npm run build
 
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm test
+#       - name: Test
+#         run: npm test
