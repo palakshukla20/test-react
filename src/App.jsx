@@ -38,9 +38,7 @@ class App extends React.Component {
       alert(`Item with priorirty: ${item.priority} exists`);
       return;
     }
-    this.setState({
-      items: items.concat(item)
-    });
+    this.setState({ items: items.concat(item) });
   }
 
   render() {
