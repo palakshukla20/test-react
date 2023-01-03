@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { items } = this.state;
+    const {items} = this.state;
     return (
       <div className="App">
         <AddItem addItem={this.addItem} />
@@ -55,4 +55,4 @@ class App extends React.Component {
   }
 }
 
-export default App; 
+export default App;

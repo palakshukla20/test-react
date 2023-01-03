@@ -16,7 +16,7 @@ const getTableStyleProps = () => {
 
 class ToDoList extends React.Component {
   render() {
-    const { items } = this.props;
+    const {items} = this.props;
 
     if (items.length === 0) {
       return <div>Empty List</div>;
@@ -34,7 +34,7 @@ class ToDoList extends React.Component {
           {sortedItems.map((i, index) => (
             <tr
               key={`${i.task}_${i.priority}`}
-              style={{ backgroundColor: index % 2 === 0 ? "#dddddd" : "white" }}
+              style={{backgroundColor: index % 2 === 0 ? "#dddddd" : "white"}}
             >
               <td>{i.task}</td>
               <td>{i.priority}</td>
