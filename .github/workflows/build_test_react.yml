@@ -31,16 +31,9 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
       - name: Install modules
         run: npm install
-        
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-        
-
   
-#       - name: Build
-#         run: npm run build
+      - name: Build
+        run: npm run build
 
-#       - name: Test
-#         run: npm test
+      - name: Test
+        run: npm test
