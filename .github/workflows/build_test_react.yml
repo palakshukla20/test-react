@@ -9,8 +9,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
-  build:
+  test_eslint:
     runs-on: ubuntu-latest
     # Don't allow runs longer than 20 minutes
     timeout-minutes: 20
