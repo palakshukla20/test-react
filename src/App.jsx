@@ -1,7 +1,7 @@
 // App.tsx
 import React from "react";
 import AddItem from "./AddItem";
-import ToDoList, {Item} from "./ToDoList";
+import ToDoList, { Item } from "./ToDoList";
 
 const initialList = [
   {
