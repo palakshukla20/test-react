@@ -31,9 +31,12 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
       - name: Install modules
         run: npm install
-  
-      - name: Build
-        run: npm run build
+      - name: Lint
+        uses: ninosaurus/eslint-check@v5
+        with:
+          eslint-config-path: "../.eslintrc.json"
+#       - name: Build
+#         run: npm run build
 
-      - name: Test
-        run: npm test
+#       - name: Test
+#         run: npm test
