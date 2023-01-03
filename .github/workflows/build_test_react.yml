@@ -29,11 +29,13 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Install modules
-        run: npm install
+      - uses: wearerequired/lint-action@v2
       - name: Run ESLint
         run: eslint . --ext .js,.jsx,.ts,.tsx
+        
+      - name: Install modules
+        run: npm install
+  
 #       - name: Build
 #         run: npm run build
 
