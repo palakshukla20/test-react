@@ -1,7 +1,7 @@
 // App.tsx
 import React from "react";
 import AddItem from "./AddItem";
-import ToDoList, {Item} from "./ToDoList";
+import ToDoList from "./ToDoList";
 
 const initialList = [
   {
@@ -38,9 +38,7 @@ class App extends React.Component {
       alert(`Item with priorirty: ${item.priority} exists`);
       return;
     }
-    this.setState({
-      items: items.concat(item)
-    });
+    this.setState({ items: items.concat(item) });
   }
 
   render() {
