@@ -24,9 +24,7 @@ class AddItem extends React.Component {
   }
 
   setPriority(evt) {
-    this.setState({
-      priority: parseInt(evt.target.value),
-    });
+    this.setState({ priority: parseInt(evt.target.value) });
   }
 
   addItem() {
