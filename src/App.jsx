@@ -25,9 +25,7 @@ const isPartOf = (item, items) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: initialList,
-    };
+    this.state = { items: initialList, };
     this.addItem = this.addItem.bind(this);
   }
 
