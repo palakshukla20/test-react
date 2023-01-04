@@ -15,7 +15,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "tests": "react-scripts test",
-    "eslint": "npx eslint $(git diff --name-only HEAD | grep -E '\\.(js|jsx|css)$' | xargs)"
+    "eslint": "npx eslint $(git diff --name-only HEAD | grep -E '\\.(ts|tsx|js|jsx|css)$' | xargs)"
   },
   "eslintConfig": {
     "extends": [
