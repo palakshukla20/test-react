@@ -20,7 +20,9 @@ jobs:
         node-version: [ 14 ]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -32,10 +34,12 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
 #       - name: Install modules
 #         run: npm install
-      - name: Diff
-        run: git diff --name-only ${{ github.sha}} ${{ github.event.before}}
-#       - name: Run es lint
-#         run: npm run eslint
+
+      - name: Run es lint
+        run: git diff ${{github.event.pull_request.base.sha}} ${{github.sha}} 
+          
+      - name: Run es lint
+        run: git diff ${{github.event.pull_request.base.sha}} ${{github.sha}}    
 #       - name: Build
 #         run: npm run build
 
