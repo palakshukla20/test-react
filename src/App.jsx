@@ -25,24 +25,24 @@ const isPartOf = (item, items) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: initialList, };
+    this.state = {
+      items: initialList
+    };
     this.addItem = this.addItem.bind(this);
   }
 
   addItem(item) {
-    const { items  } = this.state;
-        const test = { items  } ;
+    const {items} = this.state;
 
     if (isPartOf(item, items)) {
       alert(`Item with priorirty: ${item.priority} exists`);
       return;
     }
-    this.setState({  items: items.concat(item) });
+    this.setState({items: items.concat(item)});
   }
 
   render() {
-    const { items } = this.state;
-    const  test = { key: 2 }
+    const {items} = this.state;
     return (
       <div className="App">
         <AddItem addItem={this.addItem} />
