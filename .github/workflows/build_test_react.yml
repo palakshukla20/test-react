@@ -1,18 +1,44 @@
-name: ESLint Check
-on: 
+name: CI
+# Cancel in progress runs if a new one is started
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
-    
+    branches: [ "main" ]
+
+
 jobs:
-  eslint:
+  test_eslint:
     runs-on: ubuntu-latest
+    # Don't allow runs longer than 20 minutes
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        node-version: [ 14 ]
+
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v2
-      - run: npm install
-      - name: create tmp dir
-        run: mkdir ~/tmp/
-      - name: get file list
-        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js' > ~/tmp/filelist
-      - name: run lint
-        run: npx eslint $(cat ~/tmp/filelist)
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Cache all node_modules
+      - uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+      - name: Install modules
+        run: npm install
+
+      - name: Run es lint
+        run: npm run eslint
+#       - name: Build
+#         run: npm run build
+
+#       - name: Test
+#         run: npm test
