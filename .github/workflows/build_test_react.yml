@@ -16,7 +16,7 @@ jobs:
     # Map a step output to a job output
     outputs:
       all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.ts }}
+      ts: ${{ steps.changes.outputs.js }}
     steps:
         # Make sure we have some code to diff.
       - name: Checkout repository
@@ -28,7 +28,7 @@ jobs:
         # Set outputs using the command.
         run: |
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
+          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs)"
   lint:
     runs-on: ubuntu-latest
     # require the first job to have ran
