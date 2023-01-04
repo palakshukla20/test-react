@@ -11,37 +11,28 @@ on:
 
 
 jobs:
-  test_eslint:
+  changedfiles:
     runs-on: ubuntu-latest
-    # Don't allow runs longer than 20 minutes
-    timeout-minutes: 20
-    strategy:
-      matrix:
-        node-version: [ 14 ]
-
+    # Map a step output to a job output
+    outputs:
+      all: ${{ steps.changes.outputs.all}}
+      ts: ${{ steps.changes.outputs.ts }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # Cache all node_modules
-      - uses: actions/cache@v3
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-#       - name: Install modules
-#         run: npm install
-
-      - name: Run es lint
-        run: git diff ${{github.event.pull_request.base.sha}} ${{github.sha}} 
-          
-      - name: Run es lint
-        run: git diff ${{github.event.pull_request.base.sha}} ${{github.sha}}    
-#       - name: Build
-#         run: npm run build
-
-#       - name: Test
-#         run: npm test
+        # Make sure we have some code to diff.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Get changed files
+        id: changes
+        # Set outputs using the command.
+        run: |
+          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
+  lint:
+    runs-on: ubuntu-latest
+    # require the first job to have ran
+    needs: changedfiles
+    # only run there are changed files
+    if: ${{needs.changedfiles.outputs.ts}}
+    steps:
+      - name: echo changed files
+        run: echo ${{needs.changedfiles.outputs.ts}}
