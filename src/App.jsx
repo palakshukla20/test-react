@@ -31,6 +31,7 @@ class App extends React.Component {
 
   addItem(item) {
     const { items  } = this.state;
+    const test = { items  } ;
  
     if (isPartOf(item, items)) {
       alert(`Item with priorirty: ${item.priority} exists`);
