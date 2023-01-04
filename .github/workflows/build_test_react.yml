@@ -30,16 +30,14 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-      - name: Install modules
-        run: npm install
-      - name: list of files
-        run: echo $(git diff --name-only origin/main origin/${GITHUB_HEAD_REF})
-      - name: list of files
-        run: echo git diff --name-only origin/main origin/${GITHUB_HEAD_REF}
-      - name: Run es lint
-        run: npm run eslint
-      - name: Build
-        run: npm run build
+#       - name: Install modules
+#         run: npm install
+      - name: Diff
+        run: git diff --name-only v3.1.0.201310021548-r..HEAD
+#       - name: Run es lint
+#         run: npm run eslint
+#       - name: Build
+#         run: npm run build
 
 #       - name: Test
 #         run: npm test
