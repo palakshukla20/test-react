@@ -36,7 +36,7 @@ jobs:
         run: npm install
 
       - name: Run es lint
-        run: npm run eslint
+        run: npx /src
 #       - name: Build
 #         run: npm run build
 
