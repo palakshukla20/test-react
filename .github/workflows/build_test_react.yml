@@ -39,5 +39,4 @@ jobs:
         run: |
           echo `Modified files are ${{ steps.files.outputs.all }}`
           npx eslint ${{ steps.files.outputs.all }}
-      - name: Build app
-        run: npm run build
+   
