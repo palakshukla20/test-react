@@ -7,7 +7,7 @@ const initialList = [
   {
     task: "Pick up Milk",
     priority: 1,
-  },
+  } ,
   {
     task: "Buy Eggs",
     priority: 2,
@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {items} = this.state;
+    const { items } = this.state;
     return (
       <div className="App">
         <AddItem addItem={this.addItem} />
