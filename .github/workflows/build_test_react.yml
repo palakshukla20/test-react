@@ -38,6 +38,11 @@ jobs:
 
       - id: files
         uses: jitterbit/get-changed-files@v1
+      - name: test eslint  
+        run: |
+          echo `files ${{ steps.files.outputs.all }}`
+          npx eslint ${{ steps.files.outputs.all }}
+          done
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
           npx eslint ${changed_file}
