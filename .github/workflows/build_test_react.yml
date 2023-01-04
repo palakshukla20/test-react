@@ -33,23 +33,12 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
       - name: Install modules
         run: npm install
-#       - id: files
-#         uses: jitterbit/get-changed-files@v1
-#       - run: |
-#           for changed_file in ${{ steps.files.outputs.all }}; do
-#           echo `Do something with this ${changed_file}.`
-#           done
-#       - run: |
-#           for changed_file in ${{ steps.files.outputs.all }}; do
-#           echo `Do something with this ${changed_file}.`
-#           npx eslint ${changed_file}
-#           done
+      - uses: actions/checkout@v1
 
-      - name: Run es lint
-        run:  npx eslint src/App.jsx
-          
-#       - name: Build
-#         run: npm run build
-
-#       - name: Test
-#         run: npm test
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+          echo `Do something with this ${changed_file}.`
+          npx eslint ${changed_file}
+          done
