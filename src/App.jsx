@@ -46,7 +46,7 @@ class App extends React.Component {
     const test ="test"
     return (
       <div className="App">
-        <AddItem addItem={this.addItem} />
+        <AddItem addItem={ this.addItem } />
         <br />
         <ToDoList items={items} />
       </div>
