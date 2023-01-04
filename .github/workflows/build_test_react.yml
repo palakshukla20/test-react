@@ -33,7 +33,7 @@ jobs:
 #       - name: Install modules
 #         run: npm install
       - name: Diff
-        run: git diff --name-only v3.1.0.201310021548-r..HEAD
+        run: git diff --name-only HEAD
 #       - name: Run es lint
 #         run: npm run eslint
 #       - name: Build
