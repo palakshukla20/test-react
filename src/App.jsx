@@ -28,7 +28,7 @@ class App extends React.Component {
     this.state = {
       items: initialList
     };
-    this.addItem = this.addItem.bind(this);
+    this.addItem = this.addItem.bind(this ); 
   }
 
   addItem(item) {
