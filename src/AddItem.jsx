@@ -38,6 +38,7 @@ class AddItem extends React.Component {
   }
 
   render() {
+    const test2 ="test";
     return (
       <table>
         <tbody>
