@@ -1,23 +1,22 @@
-name: CI
+name: Meraki-Build
 # Cancel in progress runs if a new one is started
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
-
+    branches: [ "master" ]
 
 jobs:
-  test_eslint:
+  linting_check:
     runs-on: ubuntu-latest
     # Don't allow runs longer than 20 minutes
     timeout-minutes: 20
     strategy:
       matrix:
-        node-version: [ 14 ]
+        node-version: [ 16 ]
 
     steps:
       - uses: actions/checkout@v3
@@ -31,7 +30,7 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-      - name: Install modules
+      - name: Install npm modules
         run: npm ci
 
       - id: files
@@ -40,3 +39,5 @@ jobs:
         run: |
           echo `Modified files are ${{ steps.files.outputs.all }}`
           npx eslint ${{ steps.files.outputs.all }}
+      - name: Build app
+        run: npm run build
