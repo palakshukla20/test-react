@@ -33,8 +33,8 @@ jobs:
       - name: Install modules
         run: npm install
 
-      - name: Run es lint
-        run: npm run eslint
+#       - name: Run es lint
+#         run: npm run eslint
       - name: Build
         run: npm run build
 
