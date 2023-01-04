@@ -1,40 +1,18 @@
-name: CI
-# Cancel in progress runs if a new one is started
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-on:
-  push:
-    branches: [ "main" ]
+name: ESLint Check
+on: 
   pull_request:
-    branches: [ "main" ]
-
-
+    branches: [main]
+    
 jobs:
-  changedfiles:
+  eslint:
     runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.js }}
     steps:
-        # Make sure we have some code to diff.
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Get changed files
-        id: changes
-        # Set outputs using the command.
-        run: |
-          echo "name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs) >> $GITHUB_OUTPUT"
-          echo "name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .js$ | xargs) >> $GITHUB_OUTPUT"
-  lint:
-    runs-on: ubuntu-latest
-    # require the first job to have ran
-    needs: changedfiles
-    # only run there are changed files
-    if: ${{needs.changedfiles.outputs.ts}}
-    steps:
-      - name: echo changed files
-        run: echo ${{needs.changedfiles.outputs.ts}}
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - name: create tmp dir
+        run: mkdir ~/tmp/
+      - name: get file list
+        run: git diff ${{ github.event.pull_request.base.sha }} ${{ github.sha }} --name-only --relative '*.js' > ~/tmp/filelist
+      - name: run lint
+        run: npx eslint $(cat ~/tmp/filelist)
