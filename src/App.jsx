@@ -43,6 +43,7 @@ class App extends React.Component {
 
   render() {
     const { items } = this.state;
+    const  test = { key: 2 }
     return (
       <div className="App">
         <AddItem addItem={this.addItem} />
