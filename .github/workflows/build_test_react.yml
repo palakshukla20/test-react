@@ -33,7 +33,7 @@ jobs:
 #       - name: Install modules
 #         run: npm install
       - name: Diff
-        run: ${{ github.sha}} ${{ github.event.before}}
+        run: git diff --name-only ${{ github.sha}} ${{ github.event.before}}
 #       - name: Run es lint
 #         run: npm run eslint
 #       - name: Build
