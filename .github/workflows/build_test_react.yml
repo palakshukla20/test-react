@@ -46,7 +46,7 @@ jobs:
 #           done
 
       - name: Run es lint
-        run:  npm run eslint
+        run:  npx eslint src/App.jsx
           
 #       - name: Build
 #         run: npm run build
