@@ -28,7 +28,7 @@ class App extends React.Component {
     this.state = {
       items: initialList
     };
-    this.addItem = this.addItem.bind(this ); 
+    this.addItem = this.addItem.bind(this );
   }
 
   addItem(item) {
@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {items} = this.state;
+    const { items } = this.state;
     return (
       <div className="App">
         <AddItem addItem={this.addItem} />
