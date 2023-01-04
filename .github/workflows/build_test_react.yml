@@ -33,6 +33,8 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
       - name: Install modules
         run: npm install
+      - name: Install ESLINT
+        run: npm install eslint-plugin-react@latest --save-dev
       - uses: actions/checkout@v1
 
       - id: files
