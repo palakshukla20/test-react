@@ -34,9 +34,12 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
       - name: Install modules
         run: npm install
-
+        
       - name: Run es lint
-        run: npx src/
+        run: echo $(git diff --name-only HEAD | grep -E '\.(ts|tsx|js|jsx|css)$')
+        
+      - name: Run es lint
+        run: npx eslint $(git diff --name-only HEAD | grep -E '\.(ts|tsx|js|jsx|css)$' | xargs)
 #       - name: Build
 #         run: npm run build
 
