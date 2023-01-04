@@ -16,8 +16,7 @@ const getTableStyleProps = () => {
 
 class ToDoList extends React.Component {
   render() {
-    const { items } = this.props;
-      const test = ""
+    const {items} = this.props;
     if (items.length === 0) {
       return <div>Empty List</div>;
     }
