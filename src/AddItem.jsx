@@ -18,7 +18,7 @@ class AddItem extends React.Component {
   }
 
   setTask(evt) {
-    this.setState({ task: evt.target.value, });
+      this.setState({  task: evt.target.value, });
   }
 
   setPriority(evt) {
