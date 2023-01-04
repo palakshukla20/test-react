@@ -39,6 +39,10 @@ jobs:
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
           echo `Do something with this ${changed_file}.`
+          done
+      - run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+          echo `Do something with this ${changed_file}.`
           npx eslint ${changed_file}
           done
 
