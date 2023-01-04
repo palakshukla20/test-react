@@ -48,7 +48,7 @@ jobs:
 
       - name: Run es lint
         run: |
-          echo `${git diff --name-only HEAD }`
+          echo "${git diff --name-only HEAD }"
           npm run eslint
           
 #       - name: Build
