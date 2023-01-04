@@ -33,7 +33,9 @@ jobs:
       - name: Install modules
         run: npm install
       - name: list of files
-        run: echo $(git diff --name-only HEAD | grep -E '\.(ts|tsx|js|jsx|css)$' | xargs)
+        run: echo $(git diff --name-only origin/main origin/${GITHUB_HEAD_REF})
+      - name: list of files
+        run: echo git diff --name-only origin/main origin/${GITHUB_HEAD_REF}
       - name: Run es lint
         run: npm run eslint
       - name: Build
